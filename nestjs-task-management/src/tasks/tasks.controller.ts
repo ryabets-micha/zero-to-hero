@@ -70,6 +70,7 @@ export class TasksController {
         @Body('status', TaskStatusValidationPipe) status: TaskStatus,
         @GetUser() user: User
     ): Promise<Task> {
+        this.logger.verbose(`User "${user.username}" updated task status. Status: ${status}`);
         return this.taskService.updateTaskStatus(id, status, user);
     }
 
